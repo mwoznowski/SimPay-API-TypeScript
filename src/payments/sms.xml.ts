@@ -3,7 +3,7 @@ import {Hashing} from '../lib/hashing';
 export class SmsXml {
     private static charset = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789';
     private static params = ['send_number', 'sms_text', 'sms_from', 'sms_id', 'sign'];
-    private static codes: any = {
+    private static codes: Record<string, number> = {
         '7055': 0.25,
         '7136': 0.5,
         '7255': 1.0,

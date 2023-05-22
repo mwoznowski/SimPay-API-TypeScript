@@ -1,4 +1,3 @@
-import axios, {AxiosInstance} from 'axios';
 import {PaginatedResponse} from '../models/response/paginated.response';
 import {DbService} from '../models/directbilling/service/db.service';
 import {PartialDbService} from '../models/directbilling/service/partial.db.service';
@@ -9,25 +8,13 @@ import {DbGenerationResponse} from '../models/directbilling/transaction/db.gener
 import {DbTransactionRequest} from '../models/directbilling/transaction/db.transaction.request';
 import {DbNotificationRequest} from '../models/directbilling/transaction/db.notifications.request';
 import {Hashing} from '../lib/hashing';
+import { Client } from '../client';
 
 export class DirectBilling {
-    private readonly key: string;
-    private readonly password: string;
-    private readonly client: AxiosInstance;
+    private readonly client: Client;
 
-    constructor(key: string, password: string) {
-        this.key = key;
-        this.password = password;
-
-        this.client = axios.create({
-            baseURL: 'https://api.simpay.pl/directbilling',
-            headers: {
-                'X-SIM-KEY': this.key,
-                'X-SIM-PASSWORD': this.password,
-                'X-SIM-VERSION': '2.2.2',
-                'X-SIM-PLATFORM': 'TYPESCRIPT',
-            }
-        });
+    constructor(client: Client) {
+        this.client = client;
     }
 
     /*

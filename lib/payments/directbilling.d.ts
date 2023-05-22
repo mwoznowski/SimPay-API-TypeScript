@@ -7,11 +7,10 @@ import { DbTransaction } from '../models/directbilling/transaction/db.transactio
 import { DbGenerationResponse } from '../models/directbilling/transaction/db.generation.response';
 import { DbTransactionRequest } from '../models/directbilling/transaction/db.transaction.request';
 import { DbNotificationRequest } from '../models/directbilling/transaction/db.notifications.request';
+import { Client } from '../client';
 export declare class DirectBilling {
-    private readonly key;
-    private readonly password;
     private readonly client;
-    constructor(key: string, password: string);
+    constructor(client: Client);
     getServices(): Promise<PartialDbService[]>;
     getServicesPaginated(page?: number, pageSize?: number): Promise<PaginatedResponse<PartialDbService>>;
     getService(id: number): Promise<DbService | undefined>;
